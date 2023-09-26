@@ -10,36 +10,15 @@ import {
     startWith,
     tap,
 } from "rxjs";
-import { BaseFields, studyAction } from "./base";
-import { TimeFields, tickDate } from "./time";
-import { WellbeingFields, doNothingAction } from "./wellbeing";
 import { addDays } from "date-fns";
+import deepEqual from "deep-equal";
 
-export type Student = BaseFields & WellbeingFields & TimeFields;
-
-export type Action = (student: Student) => string;
-
-export const ACTIONS = {
-    study: studyAction,
-    doNothing: doNothingAction,
+export type Student = {
+    credits: number;
+    wellbeing: number;
+    burnout: boolean;
+    date: Date;
 };
-
-export function doAction(student: Student, actionName: keyof typeof ACTIONS) {
-    const message = ACTIONS[actionName](student);
-
-    tickDate(student);
-
-    return [student, message] as const;
-}
-
-export function createStudent(): Student {
-    return {
-        credits: 0,
-        wellbeing: 100,
-        date: new Date(),
-        burnout: false,
-    };
-}
 
 export type ActionTypes = "study" | "doNothing";
 export function createGame(
@@ -88,6 +67,7 @@ export function createGame(
     const date$ = action$.pipe(
         scan(date => addDays(date, 1), new Date(2023, 8, 1)),
         startWith(new Date(2023, 8, 1)),
+        distinctUntilChanged(),
     );
 
     const student$: Observable<Student> = combineLatest([
@@ -102,7 +82,7 @@ export function createGame(
             wellbeing,
             date,
         })),
-        distinctUntilChanged(),
+        distinctUntilChanged(deepEqual),
     );
 
     return student$;

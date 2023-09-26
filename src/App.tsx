@@ -9,8 +9,6 @@ function App() {
     const [student, setStudent] = useState<Student | null>(null);
     const [message, setMessage] = useState("");
 
-    console.log(student);
-
     useEffect(() => {
         const message$ = new Subject<string>();
         const student$ = createGame(action$, message$);
