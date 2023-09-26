@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import { createStudent } from "./game/student";
-import { studyAction } from "./game/base";
+import { tickDate } from "./game/time";
+import { format } from "date-fns";
+import { ACTIONS, createStudent, doAction } from "./game/game";
 
 function useGame() {
     const [student, setStudent] = useState(createStudent());
@@ -9,17 +10,13 @@ function useGame() {
         "Tervetuloa opiskelusimulaattoriin! Valmistu keräämällä 300 opintopistettä",
     );
 
-    const actions = {
-        study: studyAction,
-    };
-
-    function doAction(actionName: keyof typeof actions) {
-        const [newStudent, message] = actions[actionName](student);
-        setStudent(newStudent);
+    function action(actionName: keyof typeof ACTIONS) {
+        const [newStudent, message] = doAction(student, actionName);
+        setStudent(tickDate(newStudent));
         setLatestMessage(message);
     }
 
-    return [student, doAction, latestMessage] as const;
+    return [student, action, latestMessage] as const;
 }
 
 function App() {
@@ -29,11 +26,27 @@ function App() {
         <div className="App">
             <h1>Opiskelusimulaattori</h1>
             <div className="stats">
+                <span>
+                    <b> {format(student.date, "dd/M/y")}</b>
+                </span>
                 <span>Opintopisteet: {student.credits}</span>
-                <span>Hyvinvointi: {student.wellbeing}</span>
+                <span>
+                    Hyvinvointi: {student.wellbeing}{" "}
+                    {student.burnout && (
+                        <span className="warning">Olet burnoutissa</span>
+                    )}
+                </span>
             </div>
-            <div>
-                <button onClick={() => doAction("study")}>Opiskele</button>
+            <div className="actions">
+                <button
+                    disabled={student.burnout}
+                    onClick={() => doAction("study")}
+                >
+                    Opiskele
+                </button>
+                <button onClick={() => doAction("doNothing")}>
+                    Älä tee mitään
+                </button>
             </div>
             <textarea readOnly={true} value={latestMessage}></textarea>
         </div>

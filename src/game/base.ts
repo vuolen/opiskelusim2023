@@ -1,4 +1,4 @@
-import { Action, Student } from "./student";
+import { Action, Student } from "./game";
 
 export interface BaseFields {
     credits: number;
@@ -21,19 +21,14 @@ const studyActionMessage = (student: Student): string => {
 };
 
 export const studyAction: Action = (student: Student) => {
-    const credits = student.credits + 1;
-    const consecutiveDaysStudied = student.consecutiveDaysStudied + 1;
-    const wellbeing =
-        student.wellbeing -
-        (consecutiveDaysStudied > CONSECUTIVE_DAYS_LIMIT ? 1 : 0);
+    student.consecutiveDaysStudied = student.consecutiveDaysStudied + 1;
 
-    return [
-        {
-            ...student,
-            credits,
-            consecutiveDaysStudied,
-            wellbeing,
-        },
-        studyActionMessage(student),
-    ];
+    student.credits += 1;
+
+    student.wellbeing -=
+        student.consecutiveDaysStudied > CONSECUTIVE_DAYS_LIMIT ? 10 : 0;
+
+    student.burnout = student.wellbeing < 0;
+
+    return studyActionMessage(student);
 };
