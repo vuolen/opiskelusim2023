@@ -31,7 +31,9 @@ function App() {
                 <span>
                     Wellbeing: {student.wellbeing}{" "}
                     {student.burnout && (
-                        <span className="warning">Olet burnoutissa</span>
+                        <span className="warning">
+                            You're burned out, you need to rest
+                        </span>
                     )}
                 </span>
                 <span>Money: {student.money}</span>
@@ -41,10 +43,10 @@ function App() {
                     disabled={student.burnout}
                     onClick={() => action$.next("study")}
                 >
-                    Opiskele
+                    Study
                 </button>
-                <button onClick={() => action$.next("doNothing")}>Lepää</button>
-                <button onClick={() => action$.next("work")}>Tee töitä</button>
+                <button onClick={() => action$.next("doNothing")}>Rest</button>
+                <button onClick={() => action$.next("work")}>Work</button>
             </div>
             <textarea readOnly={true} value={message}></textarea>
         </div>
