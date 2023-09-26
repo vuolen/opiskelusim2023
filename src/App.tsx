@@ -21,8 +21,14 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <h1>Opiskelusimulaattori</h1>
+        <div className="App h-full w-full">
+            <div className="w-full h-fit flex p-4 bg-neutral-600 text-white">
+                <h1 className="font-bold text-lg">Opiskelusimulaattori</h1>
+            </div>
+            <div className="w-full h-fit flex justify-between p-4 bg-gradient-to-br from-slate-50 from-20% via-sky-700 via-70% to-sky-950">
+                <div>
+                </div>
+            </div>
             <div className="stats">
                 <span>
                     <b> {format(student.date, "dd/M/y")}</b>
