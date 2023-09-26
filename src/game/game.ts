@@ -13,7 +13,6 @@ import {
     withLatestFrom,
 } from "rxjs";
 import { addDays, getMonth, isLastDayOfMonth } from "date-fns";
-import deepEqual from "deep-equal";
 
 export type Student = {
     credits: number;
