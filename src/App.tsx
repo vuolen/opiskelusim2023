@@ -15,6 +15,7 @@ function useGame() {
     const [newStudent, message] = actions[actionName](student)
     setStudent(newStudent)
     setLatestMessage(message)
+
   }
 
   return [student, doAction, latestMessage] as const
@@ -25,9 +26,16 @@ function App() {
 
   return <div className='App'>
     <h1>Opiskelusimulaattori</h1>
-    <p>
+    <div className="stats">
+      <span>
+
       Opintopisteet: {student.credits}
-    </p>
+      </span>
+<span>
+
+      Hyvinvointi: {student.wellbeing}
+</span>
+    </div>
     <div>
       <button onClick={() => doAction("study")}>Opiskele</button>
     </div>

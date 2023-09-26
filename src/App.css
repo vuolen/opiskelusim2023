@@ -11,3 +11,10 @@
   min-height: 100px;
   text-align: center;
 }
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
