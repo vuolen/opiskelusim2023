@@ -5,9 +5,6 @@ export interface TimeFields {
     date: Date;
 }
 
-export const tickDate = (student: Student): Student => {
-    return {
-        ...student,
-        date: addDays(student.date, 1),
-    };
+export const tickDate = (student: Student) => {
+    student.date = addDays(student.date, 1);
 };
