@@ -33,22 +33,26 @@ function App() {
                 <span>
                     <b> {format(student.date, "dd/M/y")}</b>
                 </span>
-                <span>Opintopisteet: {student.credits}</span>
+                <span>Credits: {student.credits}</span>
                 <span>
-                    Hyvinvointi: {student.wellbeing}{" "}
+                    Wellbeing: {student.wellbeing}{" "}
                     {student.burnout && (
-                        <span className="warning">Olet burnoutissa</span>
+                        <span className="warning">
+                            You're burned out, you need to rest
+                        </span>
                     )}
                 </span>
+                <span>Money: {student.money}</span>
             </div>
             <div className="actions">
                 <button
                     disabled={student.burnout}
                     onClick={() => action$.next("study")}
                 >
-                    Opiskele
+                    Study
                 </button>
-                <button onClick={() => action$.next("doNothing")}>Lepää</button>
+                <button onClick={() => action$.next("doNothing")}>Rest</button>
+                <button onClick={() => action$.next("work")}>Work</button>
             </div>
             <textarea readOnly={true} value={message}></textarea>
         </div>
