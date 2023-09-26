@@ -1,20 +1,20 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .App > textarea {
-  width: 50%;
-  margin-top: 50px;
-  min-height: 100px;
-  text-align: center;
+    width: 50%;
+    margin-top: 50px;
+    min-height: 100px;
+    text-align: center;
 }
 
 .stats {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }

@@ -1,5 +1,3 @@
-
 export interface WellbeingFields {
-    wellbeing: number
+    wellbeing: number;
 }
-
