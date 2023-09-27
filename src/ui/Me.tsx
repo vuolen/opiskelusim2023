@@ -3,8 +3,8 @@ import discontent from "../../assets/discontent.png";
 import agony from "../../assets/agony.png";
 
 type OwnProps = {
-    wellbeing: number
-}
+    wellbeing: number;
+};
 
 const Me = ({ wellbeing }: OwnProps) => {
     return (
