@@ -1,0 +1,19 @@
+{
+    "title": "STUDENT SIMULATOR",
+    "lifeSituation": "Life situation",
+    "credits": "Study credits",
+    "wellbeing": "Wellbeing",
+    "messages": {
+        "title": "Recent messages",
+        "burnout": "You're burned out, you need to rest"
+    },
+    "actions": {
+        "title": "Actions",
+        "study": "Study",
+        "rest": "Rest",
+        "work": "Work"
+    },
+    "bank": {
+        "title": "Bank account"
+    }
+}

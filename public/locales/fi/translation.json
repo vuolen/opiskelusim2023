@@ -1,0 +1,19 @@
+{
+    "title": "OPISKELIJASIMULAATTORI",
+    "lifeSituation": "Elämäntilanne",
+    "credits": "Opintopisteet",
+    "wellbeing": "Hyvinvointi",
+    "messages": {
+        "title": "Viimeisimmät viestit",
+        "burnout": "Olet uupunut, sinun pitää levätä"
+    },
+    "actions": {
+        "title": "Toiminnot",
+        "study": "Opiskele",
+        "rest": "Lepää",
+        "work": "Tee töitä"
+    },
+    "bank": {
+        "title": "Pankkitili"
+    }
+}

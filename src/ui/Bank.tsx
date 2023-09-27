@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { Student } from "../game/game"
 
 type OwnProps = {
@@ -5,9 +6,12 @@ type OwnProps = {
   }
 
 const Bank = ({student}: OwnProps) => {
+
+  const {t} = useTranslation()
+
   return (
     <div className="flex flex-col items-start w-full h-full">
-        <p className="font-bold text-neutral-600">Bank</p>
+        <p className="font-bold text-neutral-600">{t('bank.title')}</p>
         <div className="bg-white rounded-md w-full flex flex-col items-center">
             <div className="w-full p-4 text-4xl">
                 {student.money} €

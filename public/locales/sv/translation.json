@@ -1,0 +1,19 @@
+{
+    "title": "STUDENTSIMULATOR",
+    "lifeSituation": "Livssituation",
+    "credits": "Studiepoäng",
+    "wellbeing": "Välmående",
+    "messages": {
+        "title": "Senaste meddelanden",
+        "burnout": "Du är utmattad, du måste vila."
+    },
+    "actions": {
+        "title": "Åtgärder",
+        "study": "Studera",
+        "rest": "Vila",
+        "work": "Arbeta"
+    },
+    "bank": {
+        "title": "Bankkonto"
+    }
+}
