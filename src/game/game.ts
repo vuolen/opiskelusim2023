@@ -2,17 +2,16 @@ import {
     Observable,
     Subject,
     combineLatest,
-    distinctUntilChanged,
     filter,
     map,
     merge,
-    pairwise,
     scan,
     startWith,
     tap,
     withLatestFrom,
 } from "rxjs";
-import { addDays, getMonth, isLastDayOfMonth } from "date-fns";
+import { addDays, isLastDayOfMonth } from "date-fns";
+import { createDaysWorkedThisMonth } from "./observables/daysWorkedThisMonth";
 
 export type Student = {
     credits: number;
@@ -71,25 +70,7 @@ export function createGame(
         startWith(new Date(2023, 8, 1)),
     );
 
-    const month$ = date$.pipe(map(getMonth), distinctUntilChanged());
-
-    const daysWorkedThisMonth$ = combineLatest([
-        month$,
-        action$.pipe(
-            filter(action => action === "work"),
-            tap(() =>
-                message$.next(
-                    "You worked for the day, you will get payed the last day of the month.",
-                ),
-            ),
-        ),
-    ]).pipe(
-        map(([month]) => month),
-        pairwise(),
-        filter(([prev, now]) => prev === now),
-        scan(acc => acc + 1, 0),
-        startWith(0),
-    );
+    const daysWorkedThisMonth$ = createDaysWorkedThisMonth(action$, date$);
 
     const money$ = date$.pipe(
         filter(date => isLastDayOfMonth(date)),
