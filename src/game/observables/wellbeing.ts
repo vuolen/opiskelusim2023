@@ -10,7 +10,7 @@ export function createWellbeing(energy$: Energy, message$: Messages) {
         map(energy => (energy < 10 ? -1 : 1)),
         tap(
             change =>
-                change < 0 && message$.next("tooManyConsecutiveDaysStudied"),
+                change < 0 && message$.next("tooManyConsecutiveDaysNotRested"),
         ),
         scan((wellbeing, change) => wellbeing + change, 100),
         clamp(0, 100),

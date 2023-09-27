@@ -8,7 +8,7 @@
         "greeting": "Tervetuloa opiskelusimulaattoriin! Kerää 300 opintopistettä viidessä vuodessa. Onnea tutkinnon alkuun!",
         "burnout": "Olet uupunut, sinun pitää levätä",
         "payday": "Palkkapäivä!",
-        "tooManyConsecutiveDaysStudied": "Olet opiskellut liian monta päivää putkeen ja hyvinvointisi kärsii.",
+        "tooManyConsecutiveDaysNotRested": "Et ole levännyt tarpeeksi.",
         "rest": "Lepäät päivän ja voit hieman paremmin",
         "study": "Opiskelit päivän ja sait opintopisteen",
         "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä.",
