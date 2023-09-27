@@ -6,9 +6,11 @@ import { createBurnout } from "./observables/burnout";
 import { createCredits } from "./observables/credits";
 import { createDate } from "./observables/date";
 import { createGameover } from "./observables/gameover";
+import { createEnergy } from "./observables/energy";
 
 export type Student = {
     credits: number;
+    energy: number;
     wellbeing: number;
     burnout: boolean;
     money: number;
@@ -28,7 +30,9 @@ export function createGame(action$: Observable<ActionTypes>) {
 
     const date$ = createDate(action$);
 
-    const wellbeing$ = createWellbeing(action$, message$);
+    const energy$ = createEnergy(action$, message$);
+
+    const wellbeing$ = createWellbeing(energy$, message$);
 
     const burnout$ = createBurnout(wellbeing$);
 
@@ -41,14 +45,16 @@ export function createGame(action$: Observable<ActionTypes>) {
     const student$: Observable<Student> = combineLatest([
         credits$,
         burnout$,
+        energy$,
         wellbeing$,
         date$,
         money$,
         gameover$,
     ]).pipe(
-        map(([credits, burnout, wellbeing, date, money, gameover]) => ({
+        map(([credits, burnout, energy, wellbeing, date, money, gameover]) => ({
             credits,
             burnout,
+            energy,
             wellbeing,
             date,
             money,
