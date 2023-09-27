@@ -1,17 +1,28 @@
 {
     "title": "STUDENT SIMULATOR",
-    "lifeSituation": "Life situation",
+    "lifeSituation": "Status",
     "credits": "Study credits",
     "wellbeing": "Wellbeing",
     "messages": {
         "title": "Recent messages",
-        "burnout": "You're burned out, you need to rest"
+        "greeting": "Welcome to the student simulator! Earn 300 credits in five years to graduate. Good luck with your studies!",
+        "burnout": "You're burned out, you need to rest",
+        "payday": "It's payday!",
+        "tooManyConsecutiveDaysNotRested": "You haven't had enough rest.",
+        "rest": "You rested for a day and feel a little better.",
+        "study": "You studied for a day and receive one credit.",
+        "work": "You worked for a day. Your wages are due by the last day of the month.",
+        "rent": "It's the fifth of this month. Rent is due.",
+        "applyForJobSuccess": "You got the job! Congratulations.",
+        "applyForJobFailure": "You applied for a job. Unfortunately they decided to go with another candidate. Better luck next time."
+
     },
     "actions": {
         "title": "Actions",
         "study": "Study",
         "rest": "Rest",
-        "work": "Work"
+        "work": "Work",
+        "applyForJob": "Apply for a job"
     },
     "bank": {
         "title": "Bank account"
