@@ -1,4 +1,4 @@
-import happy from "../../assets/happy.png";
+import happy from "../../assets/happy.svg";
 import discontent from "../../assets/discontent.png";
 import agony from "../../assets/agony.png";
 
