@@ -1,24 +1,18 @@
-import {
-    Observable,
-    Subject,
-    combineLatest,
-    filter,
-    map,
-    scan,
-    startWith,
-    tap,
-} from "rxjs";
-import { addDays } from "date-fns";
+import { Observable, Subject, combineLatest, map } from "rxjs";
 import { createMoney } from "./observables/money";
 import * as translation from "../locales/fi/translation.json";
 import { createWellbeing } from "./observables/wellbeing";
 import { createBurnout } from "./observables/burnout";
+import { createCredits } from "./observables/credits";
+import { createDate } from "./observables/date";
+import { createGameover } from "./observables/gameover";
 
 export type Student = {
     credits: number;
     wellbeing: number;
     burnout: boolean;
     money: number;
+    gameover: boolean;
     date: Date;
 };
 
@@ -32,23 +26,17 @@ export function createGame(action$: Observable<ActionTypes>) {
     const message$ = new Subject<MessageTypes>();
     message$.next("greeting");
 
+    const date$ = createDate(action$);
+
     const wellbeing$ = createWellbeing(action$, message$);
 
     const burnout$ = createBurnout(wellbeing$);
 
-    const credits$ = action$.pipe(
-        filter(action => action === "study"),
-        scan(credits => credits + 1, 0),
-        tap(() => message$.next("study")),
-        startWith(0),
-    );
-
-    const date$ = action$.pipe(
-        scan(date => addDays(date, 1), new Date(2023, 8, 1)),
-        startWith(new Date(2023, 8, 1)),
-    );
+    const credits$ = createCredits(action$, message$);
 
     const money$ = createMoney(action$, date$, message$);
+
+    const gameover$ = createGameover(credits$, date$);
 
     const student$: Observable<Student> = combineLatest([
         credits$,
@@ -56,13 +44,15 @@ export function createGame(action$: Observable<ActionTypes>) {
         wellbeing$,
         date$,
         money$,
+        gameover$,
     ]).pipe(
-        map(([credits, burnout, wellbeing, date, money]) => ({
+        map(([credits, burnout, wellbeing, date, money, gameover]) => ({
             credits,
             burnout,
             wellbeing,
             date,
             money,
+            gameover,
         })),
     );
 
