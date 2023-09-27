@@ -1,11 +1,12 @@
 import { Key, useEffect, useState } from "react";
-import { format } from "date-fns";
 import { ActionTypes, Student, createGame } from "./game/game";
 import { Subject } from "rxjs";
-import happy from "../assets/happy.png";
-import discontent from "../assets/discontent.png";
-import agony from "../assets/agony.png";
 import { v4 as uuidv4 } from "uuid";
+import InfoHeading from "./ui/InfoHeading";
+import NavBar from "./ui/NavBar";
+import Messages from "./ui/Messages";
+import Actions from "./ui/Actions";
+import Bank from "./ui/Bank";
 
 function App() {
     const [action$] = useState(new Subject<ActionTypes>());
@@ -41,120 +42,13 @@ function App() {
     return (
         <div className="App h-full w-full flex flex-col flex-between bg-neutral-200">
             <div className="w-full">
-                <div className="w-full h-fit flex justify-between p-4 bg-neutral-600 text-white text-lg">
-                    <h1 className="font-bold">OPISKELUSIMULAATTORI</h1>
-                    <div className="flex space-x-3">
-                        <p>SVENSKA</p>
-                        <p>ENGLISH</p>
-                    </div>
-                </div>
-                <div className="w-full h-fit flex flex-row justify-between sm:justify-end sm:p-14 sm:pt-10 bg-gradient-to-br from-slate-50 from-20% via-sky-700 via-70% to-sky-800 space-x-2">
-                    <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center">
-                        {student.wellbeing >= 80 && (
-                            <img src={happy} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
-                        )}
-                        {student.wellbeing >= 20 && student.wellbeing < 80 && (
-                            <img src={discontent} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
-                        )}
-                        {student.wellbeing < 20 && (
-                            <img src={agony} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
-                        )}
-                    </div>
-                    <div className="flex flex-col items-start p-8 sm:p-0">
-                        <p className="font-bold text-neutral-600">
-                            Elämäntilanne
-                        </p>
-                        <div className="w-full bg-black bg-opacity-40 mb-2 p-2 rounded-md flex justify-between items-center text-white">
-                            <span>
-                                <b> {format(student.date, "dd.M.y")}</b>
-                            </span>
-                        </div>
-                        <div className="flex flex-col sm:flex-row text-white space-y-2 sm:space-y-0 sm:space-x-2 h-full">
-                            <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center w-32">
-                                <div className="flex flex-col justify-center items-center w-full h-full">
-                                    <p>Credits</p>
-                                    <p className="text-4xl p-2">
-                                        {Math.trunc(
-                                            (student.credits / 300) * 100,
-                                        )}
-                                        %
-                                    </p>
-                                    <p>{student.credits}/300</p>
-                                </div>
-                            </div>
-                            <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center w-32">
-                                <div className="flex flex-col justify-center items-center w-full h-full">
-                                    <p>Wellbeing</p>
-                                    <p className="text-4xl p-2">
-                                        {student.wellbeing}%
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <NavBar/>
+                <InfoHeading student={student} />
             </div>
             <div className="w-full p-4 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 overflow-y-auto">
-                <div className="flex flex-col items-start w-full">
-                    <p className="font-bold text-neutral-600">
-                        Recent messages
-                    </p>
-                    <div className="bg-white rounded-md w-full h-full">
-                        {student.burnout && (
-                            <div className="flex flex-col">
-                                <div className="p-4 text-red-500">
-                                    You're burned out, you need to rest
-                                </div>
-                                <hr className="h-px bg-neutral-500 w-full" />
-                            </div>
-                        )}
-                        {messages.map(message => (
-                            <div key={message.key}>
-                                <div className="p-4">{message.message}</div>
-                                <hr className="h-px bg-neutral-500 w-full" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="flex flex-col items-start w-full">
-                    <p className="font-bold text-neutral-600">Actions</p>
-                    <div className="bg-white p-4 rounded-md w-full">
-                        <div className="flex flex-col space-y-2">
-                            <button
-                                disabled={student.burnout}
-                                onClick={() => action$.next("study")}
-                                className="p-2 px-4 bg-blue-600 rounded text-white"
-                            >
-                                Study
-                            </button>
-                            <button
-                                onClick={() => action$.next("doNothing")}
-                                className="p-2 px-4 bg-blue-600 rounded text-white"
-                            >
-                                Rest
-                            </button>
-                            <button
-                                onClick={() => action$.next("work")}
-                                className="p-2 px-4 bg-blue-600 rounded text-white"
-                            >
-                                Work
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-col items-start w-full h-full">
-                    <p className="font-bold text-neutral-600">Bank</p>
-                    <div className="bg-white rounded-md w-full flex flex-col items-center">
-                        <div className="w-full p-4 text-4xl">
-                            {student.money} €
-                        </div>
-                        <hr className="h-px bg-neutral-500 w-full" />
-                        <div className="w-full p-4 flex justify-between">
-                            <div>Opintotuki</div>
-                            <div className="font-bold">0 €</div>
-                        </div>
-                    </div>
-                </div>
+                <Messages student={student} messages={messages}/>
+                <Actions student={student} game={action$}/>
+                <Bank student={student}/>
             </div>
         </div>
     );
