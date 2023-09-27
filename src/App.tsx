@@ -48,8 +48,19 @@ function App() {
                         <p>ENGLISH</p>
                     </div>
                 </div>
-                <div className="w-full h-fit flex flex-row-reverse justify-between p-14 pt-10 bg-gradient-to-br from-slate-50 from-20% via-sky-700 via-70% to-sky-800">
-                    <div className="flex flex-col items-start">
+                <div className="w-full h-fit flex flex-row justify-between sm:justify-end sm:p-14 sm:pt-10 bg-gradient-to-br from-slate-50 from-20% via-sky-700 via-70% to-sky-800 space-x-2">
+                    <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center">
+                        {student.wellbeing >= 80 && (
+                            <img src={happy} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
+                        )}
+                        {student.wellbeing >= 20 && student.wellbeing < 80 && (
+                            <img src={discontent} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
+                        )}
+                        {student.wellbeing < 20 && (
+                            <img src={agony} alt="" className="h-80 sm:h-48 w-full object-scale-down" />
+                        )}
+                    </div>
+                    <div className="flex flex-col items-start p-8 sm:p-0">
                         <p className="font-bold text-neutral-600">
                             Elämäntilanne
                         </p>
@@ -58,25 +69,9 @@ function App() {
                                 <b> {format(student.date, "dd.M.y")}</b>
                             </span>
                         </div>
-                        <div className="flex text-white space-x-2">
-                            <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center">
-                                {student.wellbeing >= 80 && (
-                                    <img src={happy} alt="" className="h-48" />
-                                )}
-                                {student.wellbeing >= 20 &&
-                                    student.wellbeing < 80 && (
-                                        <img
-                                            src={discontent}
-                                            alt=""
-                                            className="h-48"
-                                        />
-                                    )}
-                                {student.wellbeing < 20 && (
-                                    <img src={agony} alt="" className="h-48" />
-                                )}
-                            </div>
+                        <div className="flex flex-col sm:flex-row text-white space-y-2 sm:space-y-0 sm:space-x-2 h-full">
                             <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center w-32">
-                                <div className="flex flex-col items-center w-full">
+                                <div className="flex flex-col justify-center items-center w-full h-full">
                                     <p>Credits</p>
                                     <p className="text-4xl p-2">
                                         {Math.trunc(
@@ -88,7 +83,7 @@ function App() {
                                 </div>
                             </div>
                             <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center w-32">
-                                <div className="flex flex-col items-center w-full">
+                                <div className="flex flex-col justify-center items-center w-full h-full">
                                     <p>Wellbeing</p>
                                     <p className="text-4xl p-2">
                                         {student.wellbeing}%
@@ -99,7 +94,7 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div className="w-full p-4 flex space-x-3">
+            <div className="w-full p-4 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 overflow-y-auto">
                 <div className="flex flex-col items-start w-full">
                     <p className="font-bold text-neutral-600">
                         Recent messages
