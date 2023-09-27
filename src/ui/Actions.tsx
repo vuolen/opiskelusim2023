@@ -25,9 +25,15 @@ const Actions = ({ student, game }: OwnProps) => {
                     <Button onClick={() => game.next("doNothing")}>
                         {t("actions.rest")}
                     </Button>
-                    <Button onClick={() => game.next("work")}>
-                        {t("actions.work")}
-                    </Button>
+                    {student.employed ? (
+                        <Button onClick={() => game.next("work")}>
+                            {t("actions.work")}
+                        </Button>
+                    ) : (
+                        <Button onClick={() => game.next("applyForJob")}>
+                            {t("actions.applyForJob")}
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>
