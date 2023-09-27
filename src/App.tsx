@@ -45,12 +45,12 @@ function App() {
                 <NavBar />
                 <InfoHeading student={student} />
             </div>
-            <div className="hidden md:flex w-full p-4 space-x-3">
+            <div className="hidden md:flex w-full p-4 space-x-3 overflow-y-auto">
                 <Messages student={student} messages={messages} />
                 <Actions student={student} game={action$} />
                 <Bank student={student} />
             </div>
-            <div className="md:hidden w-full p-4 flex space-x-3">
+            <div className="md:hidden w-full p-4 flex space-x-3 overflow-y-auto">
                 <Bank student={student} />
                 <div className="w-full flex flex-col space-y-3">
                     <Actions student={student} game={action$} />
