@@ -1,13 +1,19 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import Backend from 'i18next-http-backend';
 
-i18n.use(Backend)
-    .use(LanguageDetector)
+import fi from "../public/locales/fi/translation.json"
+import sv from "../public/locales/sv/translation.json"
+import en from "../public/locales/en/translation.json"
+
+i18n.use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        loadPath: '../public/locales/{{lng}}/translation.json',
+        resources: {
+            fi: {translation: fi},
+            sv: {translation: sv},
+            en: {translation: en}
+        },
         lng: "fi",
         fallbackLng: "fi",
         debug: true,
