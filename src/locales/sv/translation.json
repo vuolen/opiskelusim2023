@@ -5,13 +5,24 @@
     "wellbeing": "Välmående",
     "messages": {
         "title": "Senaste meddelanden",
-        "burnout": "Du är utmattad, du måste vila."
+        "greeting": "Välkommen till studiesimulatorn! Samla 300 studiepoäng under fem år. Lycka till med studierna!",
+        "burnout": "Du är utmattad, du måste vila.",
+        "payday": "Du fick lön!",
+        "tooManyConsecutiveDaysNotRested": "Du har inte vilat tillräckligt.",
+        "rest": "Du vilade en dag och mår en aning bättre.",
+        "study": "Du studerade en dag och får ett studiepoäng.",
+        "work": "Du arbetade en dag. Lönen betalas i slutet av månaden.",
+        "rent": "Det är månadens femte dag. Du betalar hyran.",
+        "applyForJobSuccess": "Du fick arbete! Grattis.",
+        "applyForJobFailure": "Du sökte arbete. Tyvärr blev du inte vald till positionen. Bättre lycka nästa gång."
+
     },
     "actions": {
-        "title": "Åtgärder",
+        "title": "Funktioner",
         "study": "Studera",
         "rest": "Vila",
-        "work": "Arbeta"
+        "work": "Arbeta",
+        "applyForJob": "Sök arbete"
     },
     "bank": {
         "title": "Bankkonto"
