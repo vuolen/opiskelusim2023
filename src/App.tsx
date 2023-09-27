@@ -42,13 +42,20 @@ function App() {
     return (
         <div className="App h-full w-full flex flex-col flex-between bg-neutral-200">
             <div className="w-full">
-                <NavBar/>
+                <NavBar />
                 <InfoHeading student={student} />
             </div>
-            <div className="w-full p-4 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 overflow-y-auto">
-                <Messages student={student} messages={messages}/>
-                <Actions student={student} game={action$}/>
-                <Bank student={student}/>
+            <div className="hidden md:flex w-full p-4 space-x-3">
+                <Messages student={student} messages={messages} />
+                <Actions student={student} game={action$} />
+                <Bank student={student} />
+            </div>
+            <div className="md:hidden w-full p-4 flex space-x-3">
+                <div className="w-full flex flex-col space-y-3">
+                    <Actions student={student} game={action$} />
+                    <Messages student={student} messages={messages} />
+                </div>
+                <Bank student={student} />
             </div>
         </div>
     );
