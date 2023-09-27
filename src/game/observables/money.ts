@@ -1,65 +1,17 @@
-import { getMonth, isLastDayOfMonth } from "date-fns";
-import {
-    Observable,
-    Subject,
-    distinctUntilChanged,
-    filter,
-    map,
-    merge,
-    scan,
-    share,
-    startWith,
-    tap,
-    withLatestFrom,
-} from "rxjs";
-import { Action, ActionTypes, MessageTypes, Messages } from "../game";
+import { merge, scan, share, startWith, tap } from "rxjs";
+import { Messages } from "../game";
+import { Salary } from "./salary";
+import { Rent } from "./rent";
 
-function createDaysWorkedThisMonth(
-    action$: Action,
-    date$: Observable<Date>,
-    message$: Messages,
-) {
-    const month$ = date$.pipe(map(getMonth), distinctUntilChanged());
+const STARTING_MONEY = 1000;
 
-    const reset = () => 0;
-    const addOne = (days: number) => days + 1;
-
+export function createMoney(salary$: Salary, rent$: Rent, message$: Messages) {
     return merge(
-        month$.pipe(map(() => reset)),
-        action$.pipe(
-            filter(action => action === "work"),
-            map(() => addOne),
-            tap(() => message$.next("work")),
-        ),
+        salary$.pipe(tap(salary => salary > 0 && message$.next("payday"))),
+        rent$.pipe(tap(() => message$.next("rent"))),
     ).pipe(
-        scan((acc, update) => update(acc), 0),
-        startWith(0),
-    );
-}
-
-export function createMoney(
-    action$: Observable<ActionTypes>,
-    date$: Observable<Date>,
-    message$: Subject<MessageTypes>,
-) {
-    const daysWorkedThisMonth$ = createDaysWorkedThisMonth(
-        action$,
-        date$,
-        message$,
-    );
-    return date$.pipe(
-        filter(date => isLastDayOfMonth(date)),
-        withLatestFrom(daysWorkedThisMonth$),
-        map(([_, daysWorkedThisMonth]) => daysWorkedThisMonth),
-        tap(
-            daysWorkedThisMonth =>
-                daysWorkedThisMonth > 0 && message$.next("payday"),
-        ),
-        scan(
-            (money, daysWorkedThisMonth) => money + daysWorkedThisMonth * 80,
-            0,
-        ),
+        scan((money, salary) => money + salary, STARTING_MONEY),
         share(),
-        startWith(0),
+        startWith(STARTING_MONEY),
     );
 }

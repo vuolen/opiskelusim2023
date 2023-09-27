@@ -11,7 +11,8 @@
         "tooManyConsecutiveDaysStudied": "Olet opiskellut liian monta päivää putkeen ja hyvinvointisi kärsii.",
         "rest": "Lepäät päivän ja voit hieman paremmin",
         "study": "Opiskelit päivän ja sait opintopisteen",
-        "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä."
+        "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä.",
+        "rent": "On kuukauden viides päivä. Vuokra perittiin tililtäsi."
     },
     "actions": {
         "title": "Toiminnot",

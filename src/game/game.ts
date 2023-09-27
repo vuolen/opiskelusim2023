@@ -7,6 +7,8 @@ import { createCredits } from "./observables/credits";
 import { createDate } from "./observables/date";
 import { createGameover } from "./observables/gameover";
 import { createEnergy } from "./observables/energy";
+import { createSalary } from "./observables/salary";
+import { createRent } from "./observables/rent";
 
 export type Student = {
     credits: number;
@@ -38,7 +40,11 @@ export function createGame(action$: Observable<ActionTypes>) {
 
     const credits$ = createCredits(action$, message$);
 
-    const money$ = createMoney(action$, date$, message$);
+    const salary$ = createSalary(action$, date$, message$);
+
+    const rent$ = createRent(date$);
+
+    const money$ = createMoney(salary$, rent$, message$);
 
     const gameover$ = createGameover(credits$, date$);
 
