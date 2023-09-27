@@ -1,5 +1,5 @@
 import { Observable, Subject, combineLatest, map } from "rxjs";
-import { createMoney } from "./observables/money";
+import { Finances, createFinances } from "./observables/finances";
 import * as translation from "../locales/fi/translation.json";
 import { createWellbeing } from "./observables/wellbeing";
 import { createBurnout } from "./observables/burnout";
@@ -10,16 +10,18 @@ import { createEnergy } from "./observables/energy";
 import { createSalary } from "./observables/salary";
 import { createRent } from "./observables/rent";
 import { createEmployed } from "./observables/employed";
+import { createEvicted } from "./observables/evicted";
 
 export type Student = {
     credits: number;
     energy: number;
     wellbeing: number;
     burnout: boolean;
-    money: number;
+    finances: Finances;
     gameover: boolean;
     date: Date;
     employed: boolean;
+    evicted: boolean;
 };
 
 export type ActionTypes = "study" | "doNothing" | "work" | "applyForJob";
@@ -34,21 +36,23 @@ export function createGame(action$: Observable<ActionTypes>) {
 
     const date$ = createDate(action$);
 
-    const employed$ = createEmployed(action$, message$);
-
-    const energy$ = createEnergy(action$, message$);
-
-    const wellbeing$ = createWellbeing(energy$, message$);
-
-    const burnout$ = createBurnout(wellbeing$);
-
-    const credits$ = createCredits(action$, message$);
-
     const salary$ = createSalary(action$, date$, message$);
 
     const rent$ = createRent(date$);
 
-    const money$ = createMoney(salary$, rent$, message$);
+    const finances$ = createFinances(salary$, rent$, message$);
+
+    const evicted$ = createEvicted(finances$, message$);
+
+    const employed$ = createEmployed(action$, message$);
+
+    const energy$ = createEnergy(action$, message$);
+
+    const wellbeing$ = createWellbeing(energy$, evicted$, message$);
+
+    const burnout$ = createBurnout(wellbeing$);
+
+    const credits$ = createCredits(action$, message$);
 
     const gameover$ = createGameover(credits$, date$);
 
@@ -58,9 +62,10 @@ export function createGame(action$: Observable<ActionTypes>) {
         energy$,
         wellbeing$,
         date$,
-        money$,
+        finances$,
         gameover$,
         employed$,
+        evicted$,
     ]).pipe(
         map(
             ([
@@ -69,18 +74,20 @@ export function createGame(action$: Observable<ActionTypes>) {
                 energy,
                 wellbeing,
                 date,
-                money,
+                finances,
                 gameover,
                 employed,
+                evicted,
             ]) => ({
                 credits,
                 burnout,
                 energy,
                 wellbeing,
                 date,
-                money,
+                finances,
                 gameover,
                 employed,
+                evicted,
             }),
         ),
     );

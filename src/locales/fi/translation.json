@@ -14,7 +14,9 @@
         "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä.",
         "rent": "On kuukauden viides päivä. Vuokra perittiin tililtäsi.",
         "applyForJobSuccess": "Sait töitä! Onnittelut.",
-        "applyForJobFailure": "Hait töitä. Valitettavasti valinta ei tällä kertaa osunut sinuun. Parempi onni ensi kerralla."
+        "applyForJobFailure": "Hait töitä. Valitettavasti valinta ei tällä kertaa osunut sinuun. Parempi onni ensi kerralla.",
+        "rentOwedWarning": "Et ole maksanut vuokraasi kolmeen kuukauteen. Jos et maksa vuokraasi, sinut häädetään.",
+        "evicted": "Sinut on häädetty."
     },
     "actions": {
         "title": "Toiminnot",
