@@ -8,31 +8,35 @@ import Messages from "./ui/Messages";
 import Actions from "./ui/Actions";
 import Bank from "./ui/Bank";
 
+type Message = {
+    key: Key;
+    message: string;
+    date?: string;
+};
+
 function App() {
     const [action$] = useState(new Subject<ActionTypes>());
     const [student, setStudent] = useState<Student | null>(null);
-    const [messages, setMessages] = useState<
-        Array<{ key: Key; message: string; date?: string }>
-    >([
-        {
-            key: uuidv4(),
-            message: "Onnea tutkinnon alkuun!",
-        },
-    ]);
-    const addMessage = (message: string) =>
-        setMessages([
-            {
-                key: uuidv4(),
-                message: message,
-            },
-            ...messages,
-        ]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
     useEffect(() => {
-        const message$ = new Subject<string>();
-        const student$ = createGame(action$, message$);
-        message$.subscribe(message => addMessage(message));
-        student$.subscribe(student => setStudent(student));
+        const [student$, message$] = createGame(action$.asObservable());
+        const messagesSub = message$.subscribe(message =>
+            setMessages(messages =>
+                messages.concat([
+                    {
+                        key: uuidv4(),
+                        message,
+                    },
+                ]),
+            ),
+        );
+        const studentSub = student$.subscribe(student => setStudent(student));
+
+        return () => {
+            messagesSub.unsubscribe();
+            studentSub.unsubscribe();
+        };
     }, [action$]);
 
     if (student === null) {

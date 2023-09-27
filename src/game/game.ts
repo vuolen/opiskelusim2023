@@ -4,14 +4,15 @@ import {
     combineLatest,
     filter,
     map,
-    merge,
     scan,
     startWith,
     tap,
-    withLatestFrom,
 } from "rxjs";
-import { addDays, isLastDayOfMonth } from "date-fns";
-import { createDaysWorkedThisMonth } from "./observables/daysWorkedThisMonth";
+import { addDays } from "date-fns";
+import { createMoney } from "./observables/money";
+import * as translation from "../locales/fi/translation.json";
+import { createWellbeing } from "./observables/wellbeing";
+import { createBurnout } from "./observables/burnout";
 
 export type Student = {
     credits: number;
@@ -22,46 +23,23 @@ export type Student = {
 };
 
 export type ActionTypes = "study" | "doNothing" | "work";
-export function createGame(
-    action$: Observable<ActionTypes>,
-    message$: Subject<string>,
-) {
-    const consecutiveDaysStudied$ = action$.pipe(
-        scan((acc, action) => {
-            return action === "study" ? acc + 1 : 0;
-        }, 0),
-        startWith(0),
-    );
+export type MessageTypes = keyof typeof translation.messages;
 
-    const wellbeing$ = merge(
-        consecutiveDaysStudied$.pipe(
-            filter(days => days > 7),
-            map(() => -10),
-            tap(() =>
-                message$.next(
-                    "Olet opiskellut liian monta päivää putkeen ja hyvinvointisi kärsii.",
-                ),
-            ),
-        ),
-        action$.pipe(
-            filter(action => action === "doNothing"),
-            map(() => 1),
-            tap(() => message$.next("Lepäät päivän ja voit hieman paremmin")),
-        ),
-    ).pipe(
-        scan((wellbeing, change) => wellbeing + change, 100),
-        startWith(100),
-    );
+export type Action = Observable<ActionTypes>;
+export type Messages = Subject<MessageTypes>;
 
-    const burnout$ = wellbeing$.pipe(
-        map(wellbeing => wellbeing < 0),
-        startWith(false),
-    );
+export function createGame(action$: Observable<ActionTypes>) {
+    const message$ = new Subject<MessageTypes>();
+    message$.next("greeting");
+
+    const wellbeing$ = createWellbeing(action$, message$);
+
+    const burnout$ = createBurnout(wellbeing$);
 
     const credits$ = action$.pipe(
         filter(action => action === "study"),
         scan(credits => credits + 1, 0),
-        tap(() => message$.next("Opiskelit päivän ja sait opintopisteen")),
+        tap(() => message$.next("study")),
         startWith(0),
     );
 
@@ -70,19 +48,7 @@ export function createGame(
         startWith(new Date(2023, 8, 1)),
     );
 
-    const daysWorkedThisMonth$ = createDaysWorkedThisMonth(action$, date$);
-
-    const money$ = date$.pipe(
-        filter(date => isLastDayOfMonth(date)),
-        withLatestFrom(daysWorkedThisMonth$),
-        map(([_, daysWorkedThisMonth]) => daysWorkedThisMonth),
-        scan(
-            (money, daysWorkedThisMonth) => money + daysWorkedThisMonth * 80,
-            0,
-        ),
-        tap(() => message$.next("Pay day!")),
-        startWith(0),
-    );
+    const money$ = createMoney(action$, date$, message$);
 
     const student$: Observable<Student> = combineLatest([
         credits$,
@@ -100,5 +66,5 @@ export function createGame(
         })),
     );
 
-    return student$;
+    return [student$, message$] as const;
 }

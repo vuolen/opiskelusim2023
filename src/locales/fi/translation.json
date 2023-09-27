@@ -1,0 +1,25 @@
+{
+    "title": "OPISKELIJASIMULAATTORI",
+    "lifeSituation": "Elämäntilanne",
+    "credits": "Opintopisteet",
+    "wellbeing": "Hyvinvointi",
+    "messages": {
+        "title": "Viimeisimmät viestit",
+        "greeting": "Tervetuloa opiskelusimulaattoriin! Kerää 300 opintopistettä viidessä vuodessa. Onnea tutkinnon alkuun!",
+        "burnout": "Olet uupunut, sinun pitää levätä",
+        "payday": "Palkkapäivä!",
+        "tooManyConsecutiveDaysStudied": "Olet opiskellut liian monta päivää putkeen ja hyvinvointisi kärsii.",
+        "rest": "Lepäät päivän ja voit hieman paremmin",
+        "study": "Opiskelit päivän ja sait opintopisteen",
+        "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä."
+    },
+    "actions": {
+        "title": "Toiminnot",
+        "study": "Opiskele",
+        "rest": "Lepää",
+        "work": "Tee töitä"
+    },
+    "bank": {
+        "title": "Pankkitili"
+    }
+}
