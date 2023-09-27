@@ -51,11 +51,11 @@ function App() {
                 <Bank student={student} />
             </div>
             <div className="md:hidden w-full p-4 flex space-x-3">
+                <Bank student={student} />
                 <div className="w-full flex flex-col space-y-3">
                     <Actions student={student} game={action$} />
                     <Messages student={student} messages={messages} />
                 </div>
-                <Bank student={student} />
             </div>
         </div>
     );
