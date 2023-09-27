@@ -40,9 +40,7 @@ export function createEnergy(action$: Action, message$: Messages) {
             map(() => 10),
         ),
     ).pipe(
-        tap(energy => console.log("ENERGY CHANGE ", energy)),
-        scan((energy, change) => energy + change, 100),
-        clamp(0, 100),
+        scan((energy, change) => clamp(0, 100, energy + change), 100),
         share(),
         startWith(100),
     );

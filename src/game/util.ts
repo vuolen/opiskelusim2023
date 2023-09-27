@@ -1,5 +1,3 @@
-import { pipe, map } from "rxjs";
-
-export function clamp(min: number, max: number) {
-    return pipe(map((val: number) => Math.min(Math.max(val, min), max)));
+export function clamp(min: number, max: number, val: number) {
+    return Math.min(Math.max(val, min), max);
 }

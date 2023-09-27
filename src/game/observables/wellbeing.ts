@@ -12,8 +12,7 @@ export function createWellbeing(energy$: Energy, message$: Messages) {
             change =>
                 change < 0 && message$.next("tooManyConsecutiveDaysNotRested"),
         ),
-        scan((wellbeing, change) => wellbeing + change, 100),
-        clamp(0, 100),
+        scan((wellbeing, change) => clamp(0, 100, wellbeing + change), 100),
         share(),
         startWith(100),
     );
