@@ -40,7 +40,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("work")}
-                            className="w-full"
+                            className="whitespace-nowrap"
                         >
                             {t("actions.work")}
                         </Button>
@@ -48,7 +48,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("applyForJob")}
-                            className="w-full"
+                            className="whitespace-nowrap"
                         >
                             {t("actions.applyForJob")}
                         </Button>
