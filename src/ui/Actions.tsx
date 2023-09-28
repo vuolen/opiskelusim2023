@@ -12,13 +12,18 @@ type OwnProps = {
 const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
     const { t } = useTranslation();
 
+    console.log(student.burnout);
+    
+
     return (
         <div className="flex flex-col items-start w-full">
             <p className="font-bold text-neutral-600">{t("actions.title")}</p>
             <div className="bg-white p-4 rounded-md w-full">
                 <div
                     className={`w-full flex justify-between ${
-                        variant === "vertical" ? "flex-col space-y-2" : "space-x-2"
+                        variant === "vertical"
+                            ? "flex-col space-y-2"
+                            : "space-x-2"
                     }`}
                 >
                     <Button
@@ -36,6 +41,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                     </Button>
                     {student.employed ? (
                         <Button
+                            disabled={student.burnout}
                             onClick={() => game.next("work")}
                             className="w-full"
                         >
