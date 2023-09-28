@@ -1,6 +1,6 @@
 import { addDays } from "date-fns";
 import { Action } from "../game";
-import { scan, share, startWith, tap } from "rxjs";
+import { scan, share, startWith } from "rxjs";
 
 export function createDate(action$: Action) {
     return action$.pipe(

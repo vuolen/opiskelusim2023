@@ -29,7 +29,7 @@ const InfoHeading = ({ student }: OwnProps) => {
                             <p className="text-4xl p-2">
                                 {Math.trunc((student.credits / 300) * 100)}%
                             </p>
-                            <p>{student.credits}/300</p>
+                            <p>{Math.floor(student.credits)}/300</p>
                         </div>
                     </div>
                     <div className="bg-black bg-opacity-40 p-2 rounded-md flex items-center w-32">
