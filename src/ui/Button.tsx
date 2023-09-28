@@ -11,7 +11,7 @@ const Button = ({ className, children, disabled = false, ...rest }: OwnProps) =>
     return (
         <button
             className={clsx(
-                "p-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-400 disabled:text-black rounded text-white",
+                "p-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-400 disabled:text-black rounded text-white active:animate-bobble",
                 className,
             )}
             disabled={disabled}

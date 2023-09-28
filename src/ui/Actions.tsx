@@ -12,9 +12,6 @@ type OwnProps = {
 const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
     const { t } = useTranslation();
 
-    console.log(student.burnout);
-    
-
     return (
         <div className="flex flex-col items-start w-full">
             <p className="font-bold text-neutral-600">{t("actions.title")}</p>
