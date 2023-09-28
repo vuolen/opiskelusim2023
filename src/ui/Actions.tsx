@@ -15,24 +15,24 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
     return (
         <div className="flex flex-col items-start w-full">
             <p className="font-bold text-neutral-600">{t("actions.title")}</p>
-            <div className="bg-white p-3 rounded-md w-full">
+            <div className="bg-white p-4 rounded-md w-full">
                 <div
                     className={`w-full flex justify-between ${
                         variant === "vertical"
-                            ? "flex-col"
-                            : "overflow-x-auto"
+                            ? "flex-col space-y-2"
+                            : "space-x-2 overflow-x-auto"
                     }`}
                 >
                     <Button
                         disabled={student.burnout}
                         onClick={() => game.next("study")}
-                        className="w-full m-1"
+                        className="w-full"
                     >
                         {t("actions.study")}
                     </Button>
                     <Button
                         onClick={() => game.next("doNothing")}
-                        className="w-full m-1"
+                        className="w-full"
                     >
                         {t("actions.rest")}
                     </Button>
@@ -40,7 +40,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("work")}
-                            className="w-full whitespace-nowrap m-1"
+                            className="w-full whitespace-nowrap"
                         >
                             {t("actions.work")}
                         </Button>
@@ -48,7 +48,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("applyForJob")}
-                            className="w-full whitespace-nowrap m-1"
+                            className="w-full whitespace-nowrap"
                         >
                             {t("actions.applyForJob")}
                         </Button>
