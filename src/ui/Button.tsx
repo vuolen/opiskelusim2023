@@ -16,7 +16,7 @@ const Button = ({
     return (
         <button
             className={clsx(
-                "p-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-400 disabled:text-black rounded text-white active:animate-bobble disabled:animate-none",
+                "p-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-400 disabled:text-black rounded text-white active:animate-bobble disabled:animate-none select-none",
                 className,
             )}
             disabled={disabled}
