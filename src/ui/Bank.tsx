@@ -16,7 +16,7 @@ const Bank = ({ student }: OwnProps) => {
                     {student.finances.money - student.finances.rentOwed} €
                 </div>
                 <hr className="h-px bg-neutral-500 w-full" />
-                <div className="w-full p-4 flex justify-between">
+                <div className="w-full p-4 flex justify-between overflow-y-auto">
                     <div>Opintotuki</div>
                     <div className="font-bold">0 €</div>
                 </div>
