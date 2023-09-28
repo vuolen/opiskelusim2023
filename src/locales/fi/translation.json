@@ -16,7 +16,8 @@
         "applyForJobSuccess": "Sait töitä! Onnittelut.",
         "applyForJobFailure": "Hait töitä. Valitettavasti valinta ei tällä kertaa osunut sinuun. Parempi onni ensi kerralla.",
         "rentOwedWarning": "Et ole maksanut vuokraasi kolmeen kuukauteen. Jos et maksa vuokraasi, sinut häädetään.",
-        "evicted": "Sinut on häädetty."
+        "evicted": "Sinut on häädetty.",
+        "welfare": "Opintoraha saapui tilillesi."
     },
     "actions": {
         "title": "Toiminnot",

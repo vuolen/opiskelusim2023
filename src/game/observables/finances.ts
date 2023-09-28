@@ -2,9 +2,10 @@ import { map, merge, scan, share, startWith, tap } from "rxjs";
 import { Messages } from "../game";
 import { Salary } from "./salary";
 import { RENT_AMOUNT, Rent } from "./rent";
+import { Welfare } from "./welfare";
 
 const STARTING_FINANCES = {
-    money: 1000,
+    money: 0,
     rentOwed: 0,
 };
 
@@ -20,16 +21,19 @@ const financeFieldUpdater =
         [fieldName]: finances[fieldName] + change,
     });
 
-const balanceFinances = (finances: Finances): Finances => ({
-    money: Math.max(finances.money - finances.rentOwed, 0),
-    rentOwed: Math.max(finances.rentOwed - finances.money, 0),
-});
+const balanceFinances = (finances: Finances): Finances => {
+    return {
+        money: Math.max(finances.money - finances.rentOwed, 0),
+        rentOwed: Math.max(finances.rentOwed - finances.money, 0),
+    };
+};
 
 const RENT_OWED_WARNING = RENT_AMOUNT * 3;
 
 export function createFinances(
     salary$: Salary,
     rent$: Rent,
+    welfare$: Welfare,
     message$: Messages,
 ) {
     return merge(
@@ -40,6 +44,10 @@ export function createFinances(
         rent$.pipe(
             tap(() => message$.next("rent")),
             map(rent => financeFieldUpdater("rentOwed", rent)),
+        ),
+        welfare$.pipe(
+            tap(() => message$.next("welfare")),
+            map(welfare => financeFieldUpdater("money", welfare)),
         ),
     ).pipe(
         scan(
