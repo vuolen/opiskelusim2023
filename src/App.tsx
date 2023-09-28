@@ -48,7 +48,7 @@ function App() {
 
     return (
         <div className="App h-full w-full flex flex-col justify-between bg-neutral-200">
-            <div className="bg-green-600 text-white -rotate-45 w-32 -translate-x-11 translate-y-2 absolute text-center">Beta</div>
+            <div className="bg-green-600 text-white -rotate-45 w-32 -translate-x-11 translate-y-1.5 absolute text-center">Beta</div>
             <div className="w-full">
                 <NavBar />
                 <InfoHeading student={student} />
@@ -64,7 +64,7 @@ function App() {
                     game={action$}
                     variant="horizontal"
                 />
-                <div className="w-full flex space-x-3 h-fit overflow-y-clip">
+                <div className="w-full flex justify-between space-x-3 h-fit overflow-y-clip">
                     <Messages student={student} messages={messages} />
                     <Bank student={student} />
                 </div>

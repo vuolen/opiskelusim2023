@@ -50,7 +50,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                     ]}
                 />
             </div>
-            <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0">
+            <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0 sm:hover:bg-opacity-20">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="211.563"

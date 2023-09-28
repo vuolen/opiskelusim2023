@@ -11,12 +11,12 @@ const Messages = ({ student, messages }: OwnProps) => {
     const { t } = useTranslation();
 
     return (
-        <div className="flex flex-col items-start w-full">
+        <div className="flex flex-col items-start w-full min-w-0">
             <p className="font-bold text-neutral-600">{t("messages.title")}</p>
             <div className="bg-white rounded-md w-full h-fit overflow-y-auto">
                 {student.burnout && (
                     <div className="flex flex-col">
-                        <div className="p-4 text-red-500">
+                        <div className="p-4 text-red-500 break-words">
                             {t("messages.burnout")}
                         </div>
                         <hr className="h-px bg-neutral-500 w-full" />
@@ -25,7 +25,7 @@ const Messages = ({ student, messages }: OwnProps) => {
                 <div className="flex flex-col-reverse">
                     {messages.map(message => (
                         <div key={message.key}>
-                            <div className="p-4">
+                            <div className="p-4 break-words">
                                 {t(`messages.${message.message}`)}
                             </div>
                             <hr className="h-px bg-neutral-500 w-full" />
