@@ -51,6 +51,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                 />
             </div>
             <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0 sm:hover:bg-opacity-20">
+                <div className="absolute self-start -translate-x-1 -translate-y-1.5 text-neutral-700">🖉</div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="211.563"
