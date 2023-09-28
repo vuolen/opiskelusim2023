@@ -14,7 +14,7 @@ export function createEvicted(
     message$: Messages,
 ) {
     return finances$.pipe(
-        map(({ rentOwed }) => rentOwed >= 100),
+        map(({ rentOwed, rentAmount }) => rentOwed >= rentAmount * 6),
         distinctUntilChanged(),
         tap(evicted => evicted && message$.next("evicted")),
         share(),
