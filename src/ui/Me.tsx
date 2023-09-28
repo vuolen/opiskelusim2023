@@ -1,22 +1,53 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import {CirclePicker} from "react-color";
+import { CirclePicker } from "react-color";
 
 type OwnProps = {
     wellbeing: number;
-    showPicker: boolean
-    setShowPicker: Dispatch<SetStateAction<boolean>>
+    showPicker: boolean;
+    setShowPicker: Dispatch<SetStateAction<boolean>>;
 };
 
 const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
-
     const [overalls, setOveralls] = useState("#ffaa00");
 
-    const face = wellbeing > 80 ? "happy" : wellbeing > 30 ? "discontent" : "agony"
-    333
+    const face =
+        wellbeing > 80 ? "happy" : wellbeing > 30 ? "discontent" : "agony";
+    333;
     return (
-        <div className="flex flex-row-reverse sm:flex-row sm:space-x-3" onClick={() => setShowPicker(!showPicker)}>
-            <div className={`${showPicker ? "" : "hidden"} max-h-96 w-32 sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-y-auto overflow-x-hidden`}>
-                <CirclePicker onChange={color => setOveralls(color.hex)} colors={["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "#222222", "#ffffff"]}/>
+        <div
+            className="flex flex-row-reverse sm:flex-row sm:space-x-3"
+            onClick={() => setShowPicker(!showPicker)}
+        >
+            <div
+                className={`${
+                    showPicker ? "" : "hidden"
+                } max-h-96 w-32 sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-y-auto overflow-x-hidden`}
+            >
+                <CirclePicker
+                    onChange={color => setOveralls(color.hex)}
+                    colors={[
+                        "#f44336",
+                        "#e91e63",
+                        "#9c27b0",
+                        "#673ab7",
+                        "#3f51b5",
+                        "#2196f3",
+                        "#03a9f4",
+                        "#00bcd4",
+                        "#009688",
+                        "#4caf50",
+                        "#8bc34a",
+                        "#cddc39",
+                        "#ffeb3b",
+                        "#ffc107",
+                        "#ff9800",
+                        "#ff5722",
+                        "#795548",
+                        "#607d8b",
+                        "#222222",
+                        "#ffffff",
+                    ]}
+                />
             </div>
             <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0">
                 <svg
@@ -653,7 +684,10 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                                 ></path>
                             </g>
                         </g>
-                        <g fillOpacity="1" className={face === "happy" ? "visible" : "hidden"}>
+                        <g
+                            fillOpacity="1"
+                            className={face === "happy" ? "visible" : "hidden"}
+                        >
                             <g transform="translate(-42.118 8.793)">
                                 <rect
                                     width="2.863"
@@ -688,7 +722,12 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                                 d="M108.403 49.939a19.014 19.014 0 01-19.014 0"
                             ></path>
                         </g>
-                        <g fillOpacity="1" className={face === "discontent" ? "visible" : "hidden"}>
+                        <g
+                            fillOpacity="1"
+                            className={
+                                face === "discontent" ? "visible" : "hidden"
+                            }
+                        >
                             <path
                                 style={{ fontVariationSettings: "normal" }}
                                 fill="none"

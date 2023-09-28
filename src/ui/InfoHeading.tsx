@@ -15,8 +15,16 @@ const InfoHeading = ({ student }: OwnProps) => {
 
     return (
         <div className="w-full h-fit flex flex-row justify-between sm:justify-end sm:p-14 sm:pt-10 bg-gradient-to-br from-slate-50 from-20% via-sky-700 via-70% to-sky-800 space-x-2">
-            <Me wellbeing={student.wellbeing} showPicker={showPicker} setShowPicker={setShowPicker} />
-            <div className={`${showPicker ? "hidden sm:flex" : "flex"} flex-col items-start p-8 sm:p-0`}>
+            <Me
+                wellbeing={student.wellbeing}
+                showPicker={showPicker}
+                setShowPicker={setShowPicker}
+            />
+            <div
+                className={`${
+                    showPicker ? "hidden sm:flex" : "flex"
+                } flex-col items-start p-8 sm:p-0`}
+            >
                 <p className="font-bold text-neutral-600">
                     {t("lifeSituation")}
                 </p>

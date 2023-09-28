@@ -1,4 +1,4 @@
-import { Observable, Subject, combineLatest, delay, map, tap } from "rxjs";
+import { Observable, Subject, combineLatest, delay, map } from "rxjs";
 import { Finances, createFinances } from "./observables/finances";
 import * as translation from "../locales/fi/translation.json";
 import { createWellbeing } from "./observables/wellbeing";
