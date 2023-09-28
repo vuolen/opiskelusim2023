@@ -28,6 +28,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                     colors={[
                         "#f44336",
                         "#e91e63",
+                        "#7c002a",
                         "#9c27b0",
                         "#673ab7",
                         "#3f51b5",
