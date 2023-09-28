@@ -5,7 +5,7 @@ const NavBar = () => {
 
     return (
         <div className="w-full h-fit flex justify-between p-4 bg-neutral-600 text-white text-lg">
-            <h1 className="font-bold">{t("title")}</h1>
+            <h1 className="font-bold pl-4">{t("title")} </h1>
             <div className="hidden sm:flex space-x-3">
                 {i18n.language !== "fi" && (
                     <p onClick={() => i18n.changeLanguage("fi")}>SUOMI</p>
