@@ -1,21 +1,29 @@
-import { map, merge, scan, share, startWith, tap } from "rxjs";
-import { Messages } from "../game";
-import { Salary } from "./salary";
-import { RENT_AMOUNT, Rent } from "./rent";
-import { Welfare } from "./welfare";
+import {
+    Observable,
+    merge,
+    queueScheduler,
+    scan,
+    share,
+    startWith,
+    subscribeOn,
+} from "rxjs";
 
 const STARTING_FINANCES = {
     money: 0,
+    rentAmount: 500,
     rentOwed: 0,
 };
 
 export type Finances = {
     money: number;
+    rentAmount: number;
     rentOwed: number;
 };
 
-const financeFieldUpdater =
-    (fieldName: keyof Finances, change: number) =>
+export type FinanceUpdater = (finances: Finances) => Finances;
+
+export const financeFieldUpdater =
+    (fieldName: keyof Finances, change: number): FinanceUpdater =>
     (finances: Finances): Finances => ({
         ...finances,
         [fieldName]: finances[fieldName] + change,
@@ -23,43 +31,20 @@ const financeFieldUpdater =
 
 const balanceFinances = (finances: Finances): Finances => {
     return {
+        ...finances,
         money: Math.max(finances.money - finances.rentOwed, 0),
         rentOwed: Math.max(finances.rentOwed - finances.money, 0),
     };
 };
 
-const RENT_OWED_WARNING = RENT_AMOUNT * 3;
-
-export function createFinances(
-    salary$: Salary,
-    rent$: Rent,
-    welfare$: Welfare,
-    message$: Messages,
-) {
-    return merge(
-        salary$.pipe(
-            tap(salary => salary > 0 && message$.next("payday")),
-            map(salary => financeFieldUpdater("money", salary)),
-        ),
-        rent$.pipe(
-            tap(() => message$.next("rent")),
-            map(rent => financeFieldUpdater("rentOwed", rent)),
-        ),
-        welfare$.pipe(
-            tap(() => message$.next("welfare")),
-            map(welfare => financeFieldUpdater("money", welfare)),
-        ),
-    ).pipe(
+export function createFinances(updaters: Observable<FinanceUpdater>[]) {
+    return merge(...updaters).pipe(
         scan(
             (finances, updater) => balanceFinances(updater(finances)),
             STARTING_FINANCES,
         ),
-        tap(
-            ({ rentOwed }) =>
-                rentOwed === RENT_OWED_WARNING &&
-                message$.next("rentOwedWarning"),
-        ),
         share(),
         startWith(STARTING_FINANCES),
+        subscribeOn(queueScheduler),
     );
 }

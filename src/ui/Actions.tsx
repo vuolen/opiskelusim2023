@@ -46,6 +46,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         </Button>
                     ) : (
                         <Button
+                            disabled={student.burnout}
                             onClick={() => game.next("applyForJob")}
                             className="w-full"
                         >

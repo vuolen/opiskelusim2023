@@ -1,4 +1,4 @@
-import { Observable, Subject, combineLatest, map } from "rxjs";
+import { Observable, Subject, combineLatest, delay, map, tap } from "rxjs";
 import { Finances, createFinances } from "./observables/finances";
 import * as translation from "../locales/fi/translation.json";
 import { createWellbeing } from "./observables/wellbeing";
@@ -7,11 +7,11 @@ import { createCredits } from "./observables/credits";
 import { createDate } from "./observables/date";
 import { createGameover } from "./observables/gameover";
 import { createEnergy } from "./observables/energy";
-import { createSalary } from "./observables/salary";
-import { createRent } from "./observables/rent";
+import { createSalary } from "./observables/financeupdaters/salary";
 import { createEmployed } from "./observables/employed";
 import { createEvicted } from "./observables/evicted";
-import { createWelfare } from "./observables/welfare";
+import { createWelfare } from "./observables/financeupdaters/welfare";
+import { createRent } from "./observables/financeupdaters/rent";
 
 export type Student = {
     credits: number;
@@ -41,15 +41,19 @@ export function createGame(action$: Observable<ActionTypes>) {
 
     const date$ = createDate(action$);
 
-    const salary$ = createSalary(action$, date$, message$);
+    const financesFeedback$ = new Subject<Finances>();
 
-    const rent$ = createRent(date$);
+    const evicted$ = createEvicted(financesFeedback$.asObservable(), message$);
 
-    const welfare$ = createWelfare(date$);
+    const financeFieldUpdaters = [
+        createRent(date$, evicted$, message$),
+        createWelfare(date$, message$),
+        createSalary(action$, date$, message$),
+    ];
 
-    const finances$ = createFinances(salary$, rent$, welfare$, message$);
+    const finances$ = createFinances(financeFieldUpdaters);
 
-    const evicted$ = createEvicted(finances$, message$);
+    finances$.pipe(delay(1)).subscribe(financesFeedback$);
 
     const employed$ = createEmployed(action$, message$);
 

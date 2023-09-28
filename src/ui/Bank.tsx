@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Student } from "../game/game";
-import { WELFARE_AMOUNT } from "../game/observables/welfare";
-import { RENT_AMOUNT } from "../game/observables/rent";
+import { WELFARE_AMOUNT } from "../game/observables/financeupdaters/welfare";
 
 type OwnProps = {
     student: Student;
@@ -9,7 +8,6 @@ type OwnProps = {
 
 const Bank = ({ student }: OwnProps) => {
     const { t } = useTranslation();
-
     return (
         <div className="flex flex-col items-start w-full h-full">
             <p className="font-bold text-neutral-600">{t("bank.title")}</p>
@@ -24,7 +22,9 @@ const Bank = ({ student }: OwnProps) => {
                 </div>
                 <div className="w-full p-4 flex justify-between overflow-y-auto">
                     <div>{t("bank.rent")}</div>
-                    <div className="font-bold">{RENT_AMOUNT} €</div>
+                    <div className="font-bold">
+                        {student.finances.rentAmount} €
+                    </div>
                 </div>
             </div>
         </div>
