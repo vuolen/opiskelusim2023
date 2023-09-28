@@ -58,7 +58,11 @@ function App() {
                 <Bank student={student} />
             </div>
             <div className="md:hidden w-full h-full p-4 flex flex-col space-y-3 overflow-y-clip">
-                <Actions student={student} game={action$} variant="horizontal"/>
+                <Actions
+                    student={student}
+                    game={action$}
+                    variant="horizontal"
+                />
                 <div className="w-full flex space-x-3 h-full overflow-y-clip">
                     <Messages student={student} messages={messages} />
                     <Bank student={student} />

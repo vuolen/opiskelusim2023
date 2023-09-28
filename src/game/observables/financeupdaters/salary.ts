@@ -11,7 +11,8 @@ import {
     tap,
     withLatestFrom,
 } from "rxjs";
-import { Action, Messages } from "../game";
+import { Action, Messages } from "../../game";
+import { FinanceUpdater, financeFieldUpdater } from "../finances";
 
 function createDaysWorkedThisMonth(
     action$: Action,
@@ -44,7 +45,7 @@ export function createSalary(
     action$: Action,
     date$: Observable<Date>,
     message$: Messages,
-) {
+): Observable<FinanceUpdater> {
     const daysWorkedThisMonth$ = createDaysWorkedThisMonth(
         action$,
         date$,
@@ -55,6 +56,8 @@ export function createSalary(
         filter(date => isLastDayOfMonth(date)),
         withLatestFrom(daysWorkedThisMonth$),
         map(([_, daysWorkedThisMonth]) => daysWorkedThisMonth * DAILY_SALARY),
+        tap(salary => salary > 0 && message$.next("payday")),
+        map(salary => financeFieldUpdater("money", salary)),
         share(),
     );
 }
