@@ -15,7 +15,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
     333;
     return (
         <div
-            className="flex flex-row-reverse sm:flex-row sm:space-x-3"
+            className="flex flex-row-reverse sm:flex-row sm:space-x-2"
             onClick={() => setShowPicker(!showPicker)}
         >
             <div
@@ -50,8 +50,9 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                     ]}
                 />
             </div>
+            <div className={`hidden ${!showPicker && "sm:flex"} self-end bg-black bg-opacity-40 p-2 sm:rounded-md hover:bg-opacity-20`}>🎨</div>
             <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0 sm:hover:bg-opacity-20">
-                <div className="absolute self-start -translate-x-1 -translate-y-1.5 text-neutral-700">🖉</div>
+                <div className="sm:hidden absolute self-start -translate-x-1 -translate-y-1.5 text-neutral-700">🎨</div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="211.563"
