@@ -52,7 +52,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
             </div>
             <div className={`hidden ${!showPicker && "sm:flex"} self-end bg-black bg-opacity-40 p-2 sm:rounded-md hover:bg-opacity-20`}>🎨</div>
             <div className="bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0 sm:hover:bg-opacity-20">
-                <div className="sm:hidden absolute self-start -translate-x-1 -translate-y-1.5 text-neutral-700">🎨</div>
+                <div className="sm:hidden absolute self-end -translate-x-1 translate-y-1 text-neutral-700 opacity-60">🎨</div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="211.563"
