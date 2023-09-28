@@ -47,21 +47,21 @@ function App() {
     }
 
     return (
-        <div className="App h-full w-full flex flex-col flex-between bg-neutral-200">
+        <div className="App h-full w-full flex flex-col justify-between bg-neutral-200">
             <div className="w-full">
                 <NavBar />
                 <InfoHeading student={student} />
             </div>
-            <div className="hidden md:flex w-full p-4 space-x-3 overflow-y-auto">
+            <div className="hidden md:flex w-full h-full p-4 space-x-3 overflow-y-clip">
                 <Messages student={student} messages={messages} />
                 <Actions student={student} game={action$} />
                 <Bank student={student} />
             </div>
-            <div className="md:hidden w-full p-4 flex space-x-3 overflow-y-auto">
-                <Bank student={student} />
-                <div className="w-full flex flex-col space-y-3">
-                    <Actions student={student} game={action$} />
+            <div className="md:hidden w-full h-full p-4 flex flex-col space-y-3 overflow-y-clip">
+                <Actions student={student} game={action$} variant="horizontal"/>
+                <div className="w-full flex space-x-3 h-full overflow-y-clip">
                     <Messages student={student} messages={messages} />
+                    <Bank student={student} />
                 </div>
             </div>
         </div>

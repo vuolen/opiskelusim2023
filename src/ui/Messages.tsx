@@ -13,7 +13,7 @@ const Messages = ({ student, messages }: OwnProps) => {
     return (
         <div className="flex flex-col items-start w-full">
             <p className="font-bold text-neutral-600">{t("messages.title")}</p>
-            <div className="bg-white rounded-md w-full h-full">
+            <div className="bg-white rounded-md w-full h-full overflow-y-auto">
                 {student.burnout && (
                     <div className="flex flex-col">
                         <div className="p-4 text-red-500">
