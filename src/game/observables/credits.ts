@@ -6,7 +6,7 @@ export type Credits = ReturnType<typeof createCredits>;
 export function createCredits(action$: Action, message$: Messages) {
     return action$.pipe(
         filter(action => action === "study"),
-        scan(credits => credits + 1, 0),
+        scan(credits => credits + 0.34, 0),
         tap(() => message$.next("study")),
         share(),
         startWith(0),

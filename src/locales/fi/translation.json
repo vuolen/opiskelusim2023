@@ -10,7 +10,7 @@
         "payday": "Palkkapäivä!",
         "tooManyConsecutiveDaysNotRested": "Et ole levännyt tarpeeksi.",
         "rest": "Lepäät päivän ja voit hieman paremmin",
-        "study": "Opiskelit päivän ja sait opintopisteen",
+        "study": "Opiskelit päivän ja edistit opintojasi",
         "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä.",
         "rent": "On kuukauden viides päivä. Vuokra perittiin tililtäsi.",
         "applyForJobSuccess": "Sait töitä! Onnittelut.",
@@ -27,6 +27,8 @@
         "applyForJob": "Hae töitä"
     },
     "bank": {
-        "title": "Pankkitili"
+        "title": "Pankkitili",
+        "welfare": "Opintoraha",
+        "rent": "Vuokra"
     }
 }
