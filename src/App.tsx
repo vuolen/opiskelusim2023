@@ -63,7 +63,7 @@ function App() {
                     game={action$}
                     variant="horizontal"
                 />
-                <div className="w-full flex space-x-3 h-full overflow-y-clip">
+                <div className="w-full flex space-x-3 h-fit overflow-y-clip">
                     <Messages student={student} messages={messages} />
                     <Bank student={student} />
                 </div>

@@ -18,7 +18,9 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
             <div className="bg-white p-4 rounded-md w-full">
                 <div
                     className={`w-full flex justify-between ${
-                        variant === "vertical" ? "flex-col space-y-2" : "space-x-2"
+                        variant === "vertical"
+                            ? "flex-col space-y-2"
+                            : "space-x-2"
                     }`}
                 >
                     <Button
@@ -36,6 +38,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                     </Button>
                     {student.employed ? (
                         <Button
+                            disabled={student.burnout}
                             onClick={() => game.next("work")}
                             className="w-full"
                         >
