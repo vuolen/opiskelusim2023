@@ -4,8 +4,8 @@ import { scan, share, startWith } from "rxjs";
 
 export function createDate(action$: Action) {
     return action$.pipe(
-        scan(date => addDays(date, 1), new Date(2023, 8, 1)),
+        scan(date => addDays(date, 1), new Date(2023, 7, 31)),
         share(),
-        startWith(new Date(2023, 8, 1)),
+        startWith(new Date(2023, 7, 31)),
     );
 }

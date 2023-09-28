@@ -11,6 +11,7 @@ import { createSalary } from "./observables/salary";
 import { createRent } from "./observables/rent";
 import { createEmployed } from "./observables/employed";
 import { createEvicted } from "./observables/evicted";
+import { createWelfare } from "./observables/welfare";
 
 export type Student = {
     credits: number;
@@ -24,7 +25,12 @@ export type Student = {
     evicted: boolean;
 };
 
-export type ActionTypes = "study" | "doNothing" | "work" | "applyForJob";
+export type ActionTypes =
+    | "skipDay"
+    | "study"
+    | "doNothing"
+    | "work"
+    | "applyForJob";
 export type MessageTypes = keyof typeof translation.messages;
 
 export type Action = Observable<ActionTypes>;
@@ -32,7 +38,6 @@ export type Messages = Subject<MessageTypes>;
 
 export function createGame(action$: Observable<ActionTypes>) {
     const message$ = new Subject<MessageTypes>();
-    message$.next("greeting");
 
     const date$ = createDate(action$);
 
@@ -40,7 +45,9 @@ export function createGame(action$: Observable<ActionTypes>) {
 
     const rent$ = createRent(date$);
 
-    const finances$ = createFinances(salary$, rent$, message$);
+    const welfare$ = createWelfare(date$);
+
+    const finances$ = createFinances(salary$, rent$, welfare$, message$);
 
     const evicted$ = createEvicted(finances$, message$);
 

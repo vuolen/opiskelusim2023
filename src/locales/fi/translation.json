@@ -10,13 +10,14 @@
         "payday": "Palkkapäivä!",
         "tooManyConsecutiveDaysNotRested": "Et ole levännyt tarpeeksi.",
         "rest": "Lepäät päivän ja voit hieman paremmin",
-        "study": "Opiskelit päivän ja sait opintopisteen",
+        "study": "Opiskelit päivän ja edistit opintojasi",
         "work": "Työskentelit päivän. Saat palkan kuun viimeinen päivä.",
         "rent": "On kuukauden viides päivä. Vuokra perittiin tililtäsi.",
         "applyForJobSuccess": "Sait töitä! Onnittelut.",
         "applyForJobFailure": "Hait töitä. Valitettavasti valinta ei tällä kertaa osunut sinuun. Parempi onni ensi kerralla.",
         "rentOwedWarning": "Et ole maksanut vuokraasi kolmeen kuukauteen. Jos et maksa vuokraasi, sinut häädetään.",
-        "evicted": "Sinut on häädetty."
+        "evicted": "Sinut on häädetty.",
+        "welfare": "Opintoraha saapui tilillesi."
     },
     "actions": {
         "title": "Toiminnot",
@@ -26,6 +27,8 @@
         "applyForJob": "Hae töitä"
     },
     "bank": {
-        "title": "Pankkitili"
+        "title": "Pankkitili",
+        "welfare": "Opintoraha",
+        "rent": "Vuokra"
     }
 }

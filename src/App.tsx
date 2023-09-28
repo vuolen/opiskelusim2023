@@ -32,8 +32,11 @@ function App() {
             ),
         );
         const studentSub = student$.subscribe(student => setStudent(student));
+        message$.next("greeting");
+        action$.next("skipDay");
 
         return () => {
+            setMessages([]);
             messagesSub.unsubscribe();
             studentSub.unsubscribe();
         };
