@@ -21,7 +21,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
             <div
                 className={`${
                     showPicker ? "" : "hidden"
-                } max-h-96 w-32 sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-y-auto overflow-x-hidden`}
+                } max-h-96 w-32 sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-hidden`}
             >
                 <CirclePicker
                     onChange={color => setOveralls(color.hex)}
