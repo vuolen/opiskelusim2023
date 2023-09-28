@@ -20,7 +20,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                     className={`w-full flex justify-between ${
                         variant === "vertical"
                             ? "flex-col space-y-2"
-                            : "space-x-2"
+                            : "space-x-2 overflow-x-auto"
                     }`}
                 >
                     <Button
@@ -40,7 +40,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("work")}
-                            className="whitespace-nowrap"
+                            className="w-full whitespace-nowrap"
                         >
                             {t("actions.work")}
                         </Button>
@@ -48,7 +48,7 @@ const Actions = ({ student, game, variant = "vertical" }: OwnProps) => {
                         <Button
                             disabled={student.burnout}
                             onClick={() => game.next("applyForJob")}
-                            className="whitespace-nowrap"
+                            className="w-full whitespace-nowrap"
                         >
                             {t("actions.applyForJob")}
                         </Button>
