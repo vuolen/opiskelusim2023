@@ -1,7 +1,7 @@
 import { Key } from "react";
 import { Student } from "../game/game";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion, useIsPresent } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 type OwnProps = {
     student: Student;
@@ -40,7 +40,6 @@ const Messages = ({ student, messages }: OwnProps) => {
 };
 
 const Item = ({ children }: { children: any }) => {
-        
     const text_animations = {
         initial: { scale: 0, opacity: 0 },
         animate: { scale: 1, opacity: 1 },

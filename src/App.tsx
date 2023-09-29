@@ -23,12 +23,14 @@ function App() {
         const [student$, message$] = createGame(action$.asObservable());
         const messagesSub = message$.subscribe(message =>
             setMessages(messages =>
-                messages.concat([
-                    {
-                        key: uuidv4(),
-                        message,
-                    },
-                ]).slice(messages.length - 30),
+                messages
+                    .concat([
+                        {
+                            key: uuidv4(),
+                            message,
+                        },
+                    ])
+                    .slice(messages.length - 30),
             ),
         );
         const studentSub = student$.subscribe(student => setStudent(student));
