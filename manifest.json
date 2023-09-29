@@ -1,0 +1,28 @@
+{
+    "name": "Opiskelijasimulaattori",
+    "short_name": "OpiskelijaSim 2023",
+    "start_url": "./opiskelusim2023/",
+    "scope": "/opiskelusim2023/",
+    "display": "standalone",
+    "background_color": "#0ea5e9",
+    "theme_color": "#525252",
+    "description": "Opiskelijaelämää simuloiva klikkailupeli",
+    "lang": "fi",
+    "icons": [
+        {
+            "src": "/favicon_maskable.svg",
+            "sizes": "any",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/favicon.svg",
+            "sizes": "any"
+        },
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["game", "education", "university", "funny"]
+}

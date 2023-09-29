@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Service worker files
+**/src/workbox-*.js
+**/src/workbox-*.js.map
+**/src/sw.js
+**/src/sw.js.map
+**/src/worker-*.js
