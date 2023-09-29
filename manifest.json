@@ -1,7 +1,8 @@
 {
     "name": "Opiskelijasimulaattori",
     "short_name": "OpiskelijaSim 2023",
-    "start_url": "https://lennu.dev/opiskelusim2023/",
+    "start_url": "/opiskelusim2023/",
+    "scope": "/opiskelusim2023/",
     "display": "standalone",
     "background_color": "#0ea5e9",
     "theme_color": "#525252",
@@ -9,16 +10,16 @@
     "lang": "fi",
     "icons": [
         {
-            "src": "/public/favicon_maskable.svg",
+            "src": "/opiskelusim2023/favicon_maskable.svg",
             "sizes": "any",
             "purpose": "maskable"
         },
         {
-            "src": "/public/favicon.svg",
+            "src": "/opiskelusim2023/favicon.svg",
             "sizes": "any"
         },
         {
-            "src": "/public/favicon.png",
+            "src": "/opiskelusim2023/favicon.png",
             "sizes": "512x512",
             "type": "image/png"
         }
