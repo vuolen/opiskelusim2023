@@ -9,16 +9,16 @@
     "lang": "fi",
     "icons": [
         {
-            "src": "/favicon_maskable.svg",
+            "src": "./favicon_maskable.svg",
             "sizes": "any",
             "purpose": "maskable"
         },
         {
-            "src": "/favicon.svg",
+            "src": "./favicon.svg",
             "sizes": "any"
         },
         {
-            "src": "/favicon.png",
+            "src": "./favicon.png",
             "sizes": "512x512",
             "type": "image/png"
         }
