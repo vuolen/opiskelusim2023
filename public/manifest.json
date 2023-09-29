@@ -3,7 +3,7 @@
     "short_name": "Opiskelija Simulator",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0ea5e9",
+    "background_color": "#525252",
     "theme_color": "#525252",
     "description": "Opiskelijaelämää simuloiva klikkailupeli",
     "lang": "fi",
