@@ -28,7 +28,7 @@ function App() {
                         key: uuidv4(),
                         message,
                     },
-                ]),
+                ]).slice(messages.length - 30),
             ),
         );
         const studentSub = student$.subscribe(student => setStudent(student));
