@@ -1,6 +1,6 @@
 {
     "name": "Opiskelijasimulaattori",
-    "short_name": "OpiskelijaSim 2023",
+    "short_name": "Opiskelija Simulator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0ea5e9",
