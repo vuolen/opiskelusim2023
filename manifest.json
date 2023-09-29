@@ -1,7 +1,7 @@
 {
     "name": "Opiskelijasimulaattori",
     "short_name": "OpiskelijaSim 2023",
-    "start_url": "./opiskelusim2023/",
+    "start_url": "https://lennu.dev/opiskelusim2023/",
     "scope": "/opiskelusim2023/",
     "display": "standalone",
     "background_color": "#0ea5e9",
