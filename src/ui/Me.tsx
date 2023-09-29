@@ -21,7 +21,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
             <div
                 className={`${
                     showPicker ? "" : "hidden"
-                } max-h-96 w-32 sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-hidden`}
+                } max-h-96 w-fit sm:w-full bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center overflow-hidden`}
             >
                 <CirclePicker
                     onChange={color => setOveralls(color.hex)}
@@ -51,7 +51,7 @@ const Me = ({ wellbeing, showPicker, setShowPicker }: OwnProps) => {
                 />
             </div>
             <div className={`hidden ${!showPicker && "sm:flex"} self-end bg-black bg-opacity-40 p-2 sm:rounded-md hover:bg-opacity-20`}>🎨</div>
-            <div className="w-fit bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center shrink-0 sm:hover:bg-opacity-20">
+            <div className="w-fit bg-black bg-opacity-40 p-2 sm:rounded-md flex items-center sm:shrink-0 sm:hover:bg-opacity-20">
                 <div className="sm:hidden absolute self-end -translate-x-1 translate-y-1 text-neutral-700 opacity-60">🎨</div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
