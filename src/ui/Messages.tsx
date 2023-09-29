@@ -41,8 +41,8 @@ const Messages = ({ student, messages }: OwnProps) => {
 
 const Item = ({ children }: { children: any }) => {
     const text_animations = {
-        initial: { scale: 0, opacity: 0 },
-        animate: { scale: 1, opacity: 1 },
+        initial: { scale: 0, opacity: 0, x: -150 },
+        animate: { scale: 1, opacity: 1, x: 0 },
         transition: { type: "spring", stiffness: 800, damping: 30 },
     };
 
