@@ -50,7 +50,7 @@ function App() {
 
     return (
         <div className="App h-full w-full flex flex-col justify-between bg-neutral-200">
-            <div className="bg-green-600 text-white -rotate-45 w-32 -translate-x-11 translate-y-1.5 absolute text-center">
+            <div className="bg-green-600 text-white font-bold text-sm w-11 rounded-full absolute top-1.5 left-1.5 text-center">
                 Beta
             </div>
             <div className="w-full">
